@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        maven { url ' https://repo.grails.org/grails/core' }
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'cat-guild'
+

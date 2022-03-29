@@ -1,0 +1,10 @@
+#spring配置
+spring:
+  #数据源配置
+  datasource:
+    # 自动执行sql
+    druid:
+      # JDBC 配置
+      url: jdbc:mysql://180.76.120.236:3306/cat_guild_prod?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+      username: ENC(3EIEtmn9QQ2UFvDrk2Of+6Loz9hG6oGczYXj7NzwAgNNbOTN3WdHMRQpfrHVtmgR)
+      password: lyOcthr2YgGi0ytZVM26rIqUr+W/hS80skM4RoLPqrzhfC0xR30I3Nz1HVv1ZFLYNAbJB16yyIZeom+62wXpbw==
