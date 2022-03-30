@@ -28,6 +28,10 @@ import cn.catguild.guild.infrastructure.jaxrs.CommonResponse;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.ApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -53,6 +57,8 @@ public class AccountResource {
 
 	@Inject
 	private AccountApplicationService service;
+	@Inject
+	private ApplicationContext applicationContext;
 
 	/**
 	 * 根据用户名称获取用户详情
@@ -60,7 +66,9 @@ public class AccountResource {
 	@GET
 	@Path("/current/user")
 	public ApiResponse<Account> getCurrentUser() {
-		return ApiResponse.ok(service.findAccountByUsername("icyfenix"));
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		return ApiResponse.ok(service.findAccountByUsername(authentication.getName()));
 	}
 
 	/**
