@@ -12,7 +12,7 @@ RUN chmod +x ./gradlew \
 FROM openjdk:17-jdk
 COPY --from=build-env /app/build/libs/cat-guild-1.0-SNAPSHOT.jar /app/main.jar
 WORKDIR /app
-ENTRYPOINT ["java","-Xms64m -Xmx128m","-Dfile.encoding=UTF8","-Duser.timezone=GMT+08","-jar","main.jar"]
+ENTRYPOINT ["java","-Xms64m","-Xmx128m","-Dfile.encoding=UTF8","-Duser.timezone=GMT+08","-jar","main.jar"]
 CMD ["--spring.profiles.active=prod"]
 # 健康检查
 #HEALTHCHECK --start-period=30s --interval=30s --timeout=3s --retries=3 \
