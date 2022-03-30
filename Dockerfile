@@ -11,10 +11,9 @@ RUN chmod +x ./gradlew \
 #FROM gcr.io/distroless/java17
 FROM openjdk:17-jdk
 COPY --from=build-env /app/build/libs/cat-guild-1.0-SNAPSHOT.jar /app/main.jar
-ENV RUN_ENV="prod"
-ENV JVM_ENV="-Xms64m -Xmx128m"
 WORKDIR /app
-ENTRYPOINT ["java","$JVM_ENV","-Dfile.encoding=UTF8","-Duser.timezone=GMT+08","-Dspring.profiles.active=$RUN_ENV","-jar","main.jar"]
+ENTRYPOINT ["java","-Xms64m -Xmx128m","-Dfile.encoding=UTF8","-Duser.timezone=GMT+08","-jar","main.jar"]
+CMD ["--spring.profiles.active=prod"]
 # 健康检查
 #HEALTHCHECK --start-period=30s --interval=30s --timeout=3s --retries=3 \
 #            CMD curl --silent --fail --request GET http://localhost:8944/actuator/health \
