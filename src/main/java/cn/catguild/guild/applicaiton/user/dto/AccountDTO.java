@@ -18,6 +18,8 @@ public class AccountDTO {
 
 	private String email;
 
-	private Long createTime;
+	private Long createdTime;
+
+	private Long lastModifiedTime;
 
 }

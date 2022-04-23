@@ -18,6 +18,7 @@
 
 package cn.catguild.guild.infrastructure.persistence;
 
+import cn.catguild.guild.domain.user.type.*;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
@@ -38,8 +39,9 @@ public class BaseEntity implements Serializable {
 	 */
 	@TableId(type = IdType.ASSIGN_ID)
 	private Long id;
-
-	private Long createTime;
-
+	/** 创建时间 **/
+	private Long createdTime;
+	/** 最后修改时间 **/
+	private Long lastModifiedTime;
 
 }

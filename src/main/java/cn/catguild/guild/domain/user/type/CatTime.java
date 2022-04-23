@@ -14,9 +14,6 @@ public class CatTime implements ValueObject {
 	private Long value;
 
 	public CatTime(Long value) {
-		if (value == null) {
-			value = System.currentTimeMillis();
-		}
 		this.value = value;
 	}
 }

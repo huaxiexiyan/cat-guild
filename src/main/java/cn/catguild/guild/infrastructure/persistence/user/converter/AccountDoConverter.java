@@ -19,7 +19,8 @@ public interface AccountDoConverter{
 		@Mapping(source = "telephone.value",target = "telephone"),
 		@Mapping(source = "email.value",target = "email"),
 		@Mapping(source = "password.value",target = "password"),
-		@Mapping(source = "createTime.value",target = "createTime")
+		@Mapping(source = "createdTime.value",target = "createdTime"),
+		@Mapping(source = "lastModifiedTime.value",target = "lastModifiedTime")
 	})
 	AccountDO toDo(Account account);
 
@@ -29,7 +30,8 @@ public interface AccountDoConverter{
 		@Mapping(source = "telephone",target = "telephone.value"),
 		@Mapping(source = "email",target = "email.value"),
 		@Mapping(source = "password",target = "password.value"),
-		@Mapping(source = "createTime",target = "createTime.value")
+		@Mapping(source = "createdTime",target = "createdTime.value"),
+		@Mapping(source = "lastModifiedTime",target = "lastModifiedTime.value")
 	})
 	Account toDomain(AccountDO orderDO);
 

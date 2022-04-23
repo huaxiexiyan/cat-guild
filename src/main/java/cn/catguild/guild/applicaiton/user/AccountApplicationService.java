@@ -46,7 +46,7 @@ public class AccountApplicationService {
 	@Transactional(rollbackFor = Exception.class)
 	public Boolean register(AccountRegisterCommand command) {
 		Account account = new Account(null, new AccountUsername(command.getUsername())
-			, new AccountPassword(command.getPassword()), null, null, null);
+			, new AccountPassword(command.getPassword()), null, null, null,null);
 		Account save = repository.save(account);
 		return true;
 	}

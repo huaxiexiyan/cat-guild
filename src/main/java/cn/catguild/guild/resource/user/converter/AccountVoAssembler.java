@@ -4,9 +4,7 @@ import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
 import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
 import cn.catguild.guild.resource.user.request.AccountPageRequest;
 import cn.catguild.guild.resource.user.vo.AccountVO;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.Collection;
 
@@ -17,7 +15,11 @@ import java.util.Collection;
 @Mapper(componentModel = MappingConstants.ComponentModel.JSR330,unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountVoAssembler {
 
-	Collection<AccountVO> toVo(Collection<AccountDTO> accountDTO);
+	@Mapping(target = "createdTime",expression = "java(cn.catguild.guild.infrastructure.utility.CatDateUtils.toLocalDateTime(dto.getCreatedTime()))")
+	@Mapping(target = "lastModifiedTime",expression = "java(cn.catguild.guild.infrastructure.utility.CatDateUtils.toLocalDateTime(dto.getLastModifiedTime()))")
+	AccountVO toVo(AccountDTO dto);
+
+    Collection<AccountVO> toVo(Collection<AccountDTO> dtoCollection);
 
 	AccountPageQuery toCommand(AccountPageRequest pageRequest);
 }

@@ -2,6 +2,8 @@ package cn.catguild.guild.resource.user.vo;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
  * @author xiyan
  * @date 2022-04-23 11:59
@@ -17,6 +19,8 @@ public class AccountVO {
 
 	private String email;
 
-	private Long createTime;
+	private LocalDateTime createdTime;
+
+	private LocalDateTime lastModifiedTime;
 
 }

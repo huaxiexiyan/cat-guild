@@ -22,7 +22,8 @@ public interface AccountDtoAssembler {
 		@Mapping(source = "username.value",target = "username"),
 		@Mapping(source = "telephone.value",target = "telephone"),
 		@Mapping(source = "email.value",target = "email"),
-		@Mapping(source = "createTime.value",target = "createTime")
+		@Mapping(source = "createdTime.value",target = "createdTime"),
+		@Mapping(source = "lastModifiedTime.value",target = "lastModifiedTime")
 	})
 	AccountDTO toDto(Account account);
 
