@@ -1,7 +1,7 @@
-package cn.catguild.guild.applicaiton.converter;
+package cn.catguild.guild.applicaiton.user.converter;
 
-import cn.catguild.guild.applicaiton.dto.AccountDTO;
-import cn.catguild.guild.applicaiton.query.AccountPageQuery;
+import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
+import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
 import cn.catguild.guild.domain.user.entity.Account;
 import cn.catguild.guild.domain.user.query.AccountDoQuery;
 import org.mapstruct.*;

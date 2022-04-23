@@ -1,18 +1,17 @@
-package cn.catguild.guild.domain.user;
+package cn.catguild.guild.applicaiton.user.query;
 
 import cn.catguild.guild.domain.user.entity.Account;
 import cn.catguild.guild.infrastructure.persistence.CatPageQuery;
-import cn.catguild.guild.infrastructure.persistence.user.entity.AccountDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * @author Lionel
- * @date 2022-04-04 23:40
+ * @date 2022-04-16 18:13
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AccountQuery extends CatPageQuery<AccountDO> {
+public class AccountPageQuery extends CatPageQuery<Account> {
 
 	private String username;
 

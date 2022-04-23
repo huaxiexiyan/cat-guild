@@ -1,4 +1,4 @@
-package cn.catguild.guild.applicaiton.query;
+package cn.catguild.guild.applicaiton.user.query;
 
 import lombok.Data;
 

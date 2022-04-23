@@ -1,4 +1,4 @@
-package cn.catguild.guild.resource.request;
+package cn.catguild.guild.resource.user.request;
 
 /**
  * @author Lionel

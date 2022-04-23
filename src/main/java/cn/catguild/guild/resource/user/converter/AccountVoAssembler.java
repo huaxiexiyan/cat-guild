@@ -1,9 +1,9 @@
-package cn.catguild.guild.resource.converter;
+package cn.catguild.guild.resource.user.converter;
 
-import cn.catguild.guild.applicaiton.dto.AccountDTO;
-import cn.catguild.guild.applicaiton.query.AccountPageQuery;
-import cn.catguild.guild.resource.request.AccountPageRequest;
-import cn.catguild.guild.resource.vo.AccountVO;
+import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
+import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
+import cn.catguild.guild.resource.user.request.AccountPageRequest;
+import cn.catguild.guild.resource.user.vo.AccountVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

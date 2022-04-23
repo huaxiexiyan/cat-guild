@@ -1,6 +1,5 @@
 package cn.catguild.guild.infrastructure.jaxrs;
 
-import cn.catguild.guild.applicaiton.dto.AccountDTO;
 import cn.catguild.guild.infrastructure.persistence.CatPage;
 import lombok.Data;
 

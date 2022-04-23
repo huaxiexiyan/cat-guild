@@ -1,34 +1,24 @@
-package cn.catguild.guild.applicaiton;
+package cn.catguild.guild.applicaiton.user;
 
-import cn.catguild.guild.applicaiton.command.AccountRegisterCommand;
-import cn.catguild.guild.applicaiton.converter.AccountDtoAssembler;
-import cn.catguild.guild.applicaiton.dto.AccountDTO;
-import cn.catguild.guild.applicaiton.query.AccountPageQuery;
-import cn.catguild.guild.applicaiton.query.AccountQuery;
-import cn.catguild.guild.domain.auth.AuthenticAccount;
+import cn.catguild.guild.applicaiton.user.command.AccountRegisterCommand;
+import cn.catguild.guild.applicaiton.user.converter.AccountDtoAssembler;
+import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
+import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
+import cn.catguild.guild.applicaiton.user.query.AccountQuery;
 import cn.catguild.guild.domain.user.entity.Account;
 import cn.catguild.guild.domain.user.query.AccountDoQuery;
 import cn.catguild.guild.domain.user.repository.AccountRepository;
 import cn.catguild.guild.domain.user.type.AccountPassword;
 import cn.catguild.guild.domain.user.type.AccountUsername;
-import cn.catguild.guild.domain.user.type.Email;
-import cn.catguild.guild.infrastructure.jaxrs.ApiResponse;
 import cn.catguild.guild.infrastructure.persistence.CatPage;
-import cn.catguild.guild.infrastructure.utility.Encryption;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * 用户资源的应用服务接口

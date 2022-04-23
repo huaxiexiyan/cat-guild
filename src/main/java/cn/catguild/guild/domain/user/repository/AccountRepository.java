@@ -1,6 +1,5 @@
 package cn.catguild.guild.domain.user.repository;
 
-import cn.catguild.guild.domain.user.AccountQuery;
 import cn.catguild.guild.domain.user.entity.Account;
 import cn.catguild.guild.domain.user.query.AccountDoQuery;
 import cn.catguild.guild.domain.user.type.AccountId;

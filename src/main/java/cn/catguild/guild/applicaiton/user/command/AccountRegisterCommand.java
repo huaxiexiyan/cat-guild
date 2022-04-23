@@ -1,4 +1,4 @@
-package cn.catguild.guild.applicaiton.command;
+package cn.catguild.guild.applicaiton.user.command;
 
 import lombok.Data;
 

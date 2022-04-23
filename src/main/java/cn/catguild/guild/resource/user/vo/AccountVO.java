@@ -1,4 +1,4 @@
-package cn.catguild.guild.resource.vo;
+package cn.catguild.guild.resource.user.vo;
 
 import lombok.Data;
 

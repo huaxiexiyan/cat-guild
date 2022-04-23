@@ -1,4 +1,4 @@
-package cn.catguild.guild.applicaiton.dto;
+package cn.catguild.guild.applicaiton.user.dto;
 
 import lombok.Data;
 import org.mapstruct.Mapping;

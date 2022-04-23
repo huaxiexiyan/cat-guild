@@ -1,17 +1,17 @@
-package cn.catguild.guild.resource;
+package cn.catguild.guild.resource.user;
 
-import cn.catguild.guild.applicaiton.AccountApplicationService;
-import cn.catguild.guild.applicaiton.command.AccountRegisterCommand;
-import cn.catguild.guild.applicaiton.dto.AccountDTO;
-import cn.catguild.guild.applicaiton.query.AccountPageQuery;
-import cn.catguild.guild.applicaiton.query.AccountQuery;
+import cn.catguild.guild.applicaiton.user.AccountApplicationService;
+import cn.catguild.guild.applicaiton.user.command.AccountRegisterCommand;
+import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
+import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
+import cn.catguild.guild.applicaiton.user.query.AccountQuery;
 import cn.catguild.guild.infrastructure.jaxrs.ApiPage;
 import cn.catguild.guild.infrastructure.jaxrs.ApiResponse;
 import cn.catguild.guild.infrastructure.persistence.CatPage;
-import cn.catguild.guild.resource.converter.AccountVoAssembler;
-import cn.catguild.guild.resource.request.AccountPageRequest;
-import cn.catguild.guild.resource.request.AccountRegister;
-import cn.catguild.guild.resource.vo.AccountVO;
+import cn.catguild.guild.resource.user.converter.AccountVoAssembler;
+import cn.catguild.guild.resource.user.request.AccountPageRequest;
+import cn.catguild.guild.resource.user.request.AccountRegister;
+import cn.catguild.guild.resource.user.vo.AccountVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
@@ -20,7 +20,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
