@@ -1,58 +1,105 @@
-/*
- * Copyright 2012-2020. the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. More information from:
- *
- *        https://github.com/fenixsoft
- */
-
 package cn.catguild.guild.applicaiton;
 
-import cn.catguild.guild.domain.account.Account;
-import cn.catguild.guild.domain.account.AccountRepository;
+import cn.catguild.guild.applicaiton.command.AccountRegisterCommand;
+import cn.catguild.guild.applicaiton.converter.AccountDtoAssembler;
+import cn.catguild.guild.applicaiton.dto.AccountDTO;
+import cn.catguild.guild.applicaiton.query.AccountPageQuery;
+import cn.catguild.guild.applicaiton.query.AccountQuery;
+import cn.catguild.guild.domain.auth.AuthenticAccount;
+import cn.catguild.guild.domain.user.entity.Account;
+import cn.catguild.guild.domain.user.query.AccountDoQuery;
+import cn.catguild.guild.domain.user.repository.AccountRepository;
+import cn.catguild.guild.domain.user.type.AccountPassword;
+import cn.catguild.guild.domain.user.type.AccountUsername;
+import cn.catguild.guild.domain.user.type.Email;
+import cn.catguild.guild.infrastructure.jaxrs.ApiResponse;
+import cn.catguild.guild.infrastructure.persistence.CatPage;
 import cn.catguild.guild.infrastructure.utility.Encryption;
+import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 用户资源的应用服务接口
+ * 职责就是编排领域服务、事务控制、并对外提供应用服务接口
+ * 依赖于 基础设施层、领域层
+ * <p>
+ * pojo使用原则：
+ * DTO 作为出参、Command、Query、Event对象 作为出参
+ * DTOAssembler 把领域对象，转化为DTO
  *
  * @author icyfenix@gmail.com
  * @date 2020/3/10 17:46
  **/
-@Named
-@Transactional
+@AllArgsConstructor
+@Service
 public class AccountApplicationService {
 
-	@Inject
-	private AccountRepository repository;
+	private final AccountRepository repository;
 
-	@Inject
-	private Encryption encoder;
+	private final AccountDtoAssembler accountDtoAssembler;
 
-	public void createAccount(Account account) {
-		account.setPassword(encoder.encode(account.getPassword()));
-		repository.save(account);
+	/**
+	 * 注册账号
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public Boolean register(AccountRegisterCommand command) {
+		Account account = new Account(null, new AccountUsername(command.getUsername())
+			, new AccountPassword(command.getPassword()), null, null, null);
+		Account save = repository.save(account);
+		return true;
 	}
 
-	public Account findAccountByUsername(String username) {
-		return repository.findByUsername(username);
+	/**
+	 * 批量查询
+	 *
+	 * @param query 查询对象
+	 * @return
+	 */
+	public List<AccountDTO> query(AccountQuery query) {
+		Optional<Account> account = repository.find(new AccountUsername(query.getUsername()));
+		Account account1 = account.orElseThrow(() -> new UsernameNotFoundException("用户" + query.getUsername() + "不存在"));
+		AccountDTO accountDTO = new AccountDTO();
+		accountDTO.setUsername(account1.getUsername().getValue());
+		List<AccountDTO> list = new ArrayList<>();
+		list.add(accountDTO);
+		return list;
 	}
 
-	public void updateAccount(Account account) {
-		repository.save(account);
+	/**
+	 * 查询单个
+	 *
+	 * @param accountId
+	 * @return
+	 */
+	public AccountDTO get(Long accountId) {
+		return null;
+	}
+
+	/**
+	 * 分页查询
+	 *
+	 * @param pageQuery
+	 * @return
+	 */
+	public CatPage<AccountDTO> search(AccountPageQuery pageQuery) {
+		CatPage<Account> queryPage = new CatPage<>(pageQuery);
+		AccountDoQuery account = accountDtoAssembler.toDoQuery(pageQuery);
+		CatPage<Account> page = repository.page(queryPage,account);
+		CatPage<AccountDTO> catPage = new CatPage<>(page);
+		catPage.setList(accountDtoAssembler.toDto(page.getList()));
+		return catPage;
 	}
 
 }

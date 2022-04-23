@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-03-12 17:49
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -71,6 +71,10 @@ public class ApiResponse<T> {
 		return new ApiResponse<>(data);
 	}
 
+	public static <T> ApiResponse<T> ok() {
+		return new ApiResponse<>();
+	}
+
 	/**
 	 * 错误响应
 	 *
@@ -80,6 +84,14 @@ public class ApiResponse<T> {
 	 */
 	public static <T> ApiResponse<T> fail(String errorCode) {
 		return new ApiResponse<>(errorCode);
+	}
+
+	public static <T> ApiResponse<T> fail() {
+		return new ApiResponse<>("400");
+	}
+
+	public static ApiResponse<?> status(Boolean status) {
+		return status == null || !status ? fail():ok();
 	}
 
 }

@@ -18,7 +18,8 @@
 
 package cn.catguild.guild.domain.auth;
 
-import cn.catguild.guild.domain.account.Account;
+import cn.catguild.guild.domain.user.entity.Account;
+import cn.catguild.guild.infrastructure.persistence.user.entity.AccountDO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,7 +37,7 @@ import java.util.HashSet;
  * @author icyfenix@gmail.com
  * @date 2020/3/7 20:46
  **/
-public class AuthenticAccount extends Account implements UserDetails {
+public class AuthenticAccount extends AccountDO implements UserDetails {
 
 	/**
 	 * 该用户拥有的授权，譬如读取权限、修改权限、增加权限等等
@@ -50,11 +51,14 @@ public class AuthenticAccount extends Account implements UserDetails {
 
 	public AuthenticAccount(Account origin) {
 		this();
-		BeanUtils.copyProperties(origin, this);
-		if (getId() == 1) {
+		//BeanUtils.copyProperties(origin, this);
+		this.setPassword(origin.getPassword().getValue());
+		this.setUsername(origin.getUsername().getValue());
+		this.setId(origin.getId().getValue());
+		//if (getId() == 1) {
 			// 由于没有做用户管理功能，默认给系统中第一个用户赋予管理员角色
 			authorities.add(new SimpleGrantedAuthority(Role.ADMIN));
-		}
+		//}
 	}
 
 	@Override

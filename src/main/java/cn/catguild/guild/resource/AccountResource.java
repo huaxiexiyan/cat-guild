@@ -1,102 +1,106 @@
-/*
- * Copyright 2012-2020. the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. More information from:
- *
- *        https://github.com/fenixsoft
- */
-
 package cn.catguild.guild.resource;
 
 import cn.catguild.guild.applicaiton.AccountApplicationService;
-import cn.catguild.guild.domain.account.Account;
-import cn.catguild.guild.domain.account.validation.AuthenticatedAccount;
-import cn.catguild.guild.domain.account.validation.NotConflictAccount;
-import cn.catguild.guild.domain.account.validation.UniqueAccount;
+import cn.catguild.guild.applicaiton.command.AccountRegisterCommand;
+import cn.catguild.guild.applicaiton.dto.AccountDTO;
+import cn.catguild.guild.applicaiton.query.AccountPageQuery;
+import cn.catguild.guild.applicaiton.query.AccountQuery;
+import cn.catguild.guild.infrastructure.jaxrs.ApiPage;
 import cn.catguild.guild.infrastructure.jaxrs.ApiResponse;
-import cn.catguild.guild.infrastructure.jaxrs.CommonResponse;
+import cn.catguild.guild.infrastructure.persistence.CatPage;
+import cn.catguild.guild.resource.converter.AccountVoAssembler;
+import cn.catguild.guild.resource.request.AccountPageRequest;
+import cn.catguild.guild.resource.request.AccountRegister;
+import cn.catguild.guild.resource.vo.AccountVO;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
-import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import java.util.Collection;
+import java.util.List;
 
 /**
- * 用户资源
+ * 用户资源、对终端提供api接口
+ * 可依赖于 基础设施层、应用层
  * <p>
- * 对客户端以Restful形式暴露资源，提供对用户资源{@link Account}的管理入口
+ * 对客户端以Restful形式暴露资源，提供对用户资源{@link cn.catguild.guild.domain.user.entity.Account}的管理入口
  *
- * @author icyfenix@gmail.com
+ * @author xiyan
  * @date 2020/3/6 20:52
  **/
-@Path("/accounts")
-@Component
+@Slf4j
 @CacheConfig(cacheNames = "resource.account")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@RequestMapping("/api/accounts")
+@RestController
+@AllArgsConstructor
 public class AccountResource {
 
-	@Inject
+	/**
+	 * 直接依赖-应用层
+	 **/
 	private AccountApplicationService service;
-	@Inject
-	private ApplicationContext applicationContext;
+	private AccountVoAssembler accountVoAssembler;
 
 	/**
-	 * 根据用户名称获取用户详情
-	 */
-	@GET
-	@Path("/current/user")
-	public ApiResponse<Account> getCurrentUser() {
+	 * 注册账号
+	 **/
+	@PostMapping("/register")
+	public ApiResponse<?> register(@RequestBody AccountRegister register) {
+		AccountRegisterCommand command = new AccountRegisterCommand();
+		return ApiResponse.status(service.register(command));
+	}
+
+	/**
+	 * 忘记密码
+	 **/
+	@GetMapping("/reset-password")
+	public ApiResponse<?> resetPassword() {
+		return ApiResponse.ok();
+	}
+
+	/**
+	 * 账号认证
+	 **/
+	@GetMapping("/authenticate")
+	public ApiResponse<?> authenticate() {
+		return ApiResponse.ok();
+	}
+
+	/**
+	 * 注销账号
+	 **/
+	@PostMapping("/logout")
+	public ApiResponse<?> logout() {
+		return ApiResponse.ok();
+	}
+
+	/**
+	 * 账号列表
+	 **/
+	@GetMapping("")
+	public ApiResponse<ApiPage<AccountVO>> page(AccountPageRequest pageRequest) {
+		AccountPageQuery pageQuery = accountVoAssembler.toCommand(pageRequest);
+		CatPage<AccountDTO> search = service.search(pageQuery);
+		ApiPage<AccountVO> page = new ApiPage<>(search);
+		page.setList(accountVoAssembler.toVo(search.getList()));
+		return ApiResponse.ok(page);
+	}
+
+	/**
+	 * 当前登录账号信息
+	 **/
+	@GetMapping("/current")
+	public ApiResponse<AccountDTO> currentAccount() {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
-		return ApiResponse.ok(service.findAccountByUsername(authentication.getName()));
+		AccountQuery query = new AccountQuery();
+		query.setUsername(authentication.getName());
+		List<AccountDTO> accounts = service.query(query);
+		return ApiResponse.ok(accounts.get(0));
 	}
 
-	/**
-	 * 根据用户名称获取用户详情
-	 */
-	@GET
-	@Path("/{username}")
-	@Cacheable(key = "#username")
-	public Account getUser(@PathParam("username") String username) {
-		return service.findAccountByUsername(username);
-	}
-
-	/**
-	 * 创建新的用户
-	 */
-	@POST
-	@CacheEvict(key = "#user.username")
-	public Response createUser(@Valid @UniqueAccount Account user) {
-		return CommonResponse.op(() -> service.createAccount(user));
-	}
-
-
-	/**
-	 * 更新用户信息
-	 */
-	@PUT
-	@CacheEvict(key = "#user.username")
-	public Response updateUser(@Valid @AuthenticatedAccount @NotConflictAccount Account user) {
-		return CommonResponse.op(() -> service.updateAccount(user));
-	}
 }

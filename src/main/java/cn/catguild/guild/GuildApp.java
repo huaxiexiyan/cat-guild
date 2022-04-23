@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author xiyan
  * @date 2022-02-27 16:52
  */
+
 @SpringBootApplication
 public class GuildApp {
 
