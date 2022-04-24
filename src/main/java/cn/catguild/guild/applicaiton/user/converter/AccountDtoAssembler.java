@@ -1,5 +1,6 @@
 package cn.catguild.guild.applicaiton.user.converter;
 
+import cn.catguild.guild.applicaiton.user.command.AccountRegisterCommand;
 import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
 import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
 import cn.catguild.guild.domain.user.entity.Account;
@@ -28,5 +29,9 @@ public interface AccountDtoAssembler {
 	AccountDTO toDto(Account account);
 
 	Collection<AccountDTO> toDto(Collection<Account> list);
+
+	@Mapping(source = "username",target = "username.value")
+	@Mapping(source = "password",target = "password.value")
+	Account toDomain(AccountRegisterCommand command);
 
 }

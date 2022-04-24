@@ -13,6 +13,7 @@ import cn.catguild.guild.domain.user.type.AccountUsername;
 import cn.catguild.guild.infrastructure.persistence.CatPage;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,14 +41,16 @@ public class AccountApplicationService {
 
 	private final AccountDtoAssembler accountDtoAssembler;
 
+	private final PasswordEncoder passwordEncoder;
+
 	/**
 	 * 注册账号
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public Boolean register(AccountRegisterCommand command) {
-		Account account = new Account(null, new AccountUsername(command.getUsername())
-			, new AccountPassword(command.getPassword()), null, null, null,null);
-		Account save = repository.save(account);
+		Account account = accountDtoAssembler.toDomain(command);
+		account.getPassword().encrypt(passwordEncoder);
+		repository.save(account);
 		return true;
 	}
 

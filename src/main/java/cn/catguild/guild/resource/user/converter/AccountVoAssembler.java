@@ -1,8 +1,10 @@
 package cn.catguild.guild.resource.user.converter;
 
+import cn.catguild.guild.applicaiton.user.command.AccountRegisterCommand;
 import cn.catguild.guild.applicaiton.user.dto.AccountDTO;
 import cn.catguild.guild.applicaiton.user.query.AccountPageQuery;
 import cn.catguild.guild.resource.user.request.AccountPageRequest;
+import cn.catguild.guild.resource.user.request.AccountRegister;
 import cn.catguild.guild.resource.user.vo.AccountVO;
 import org.mapstruct.*;
 
@@ -22,4 +24,6 @@ public interface AccountVoAssembler {
     Collection<AccountVO> toVo(Collection<AccountDTO> dtoCollection);
 
 	AccountPageQuery toCommand(AccountPageRequest pageRequest);
+
+	AccountRegisterCommand toCommand(AccountRegister pageRequest);
 }

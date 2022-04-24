@@ -49,8 +49,7 @@ public class AccountResource {
 	 **/
 	@PostMapping("/register")
 	public ApiResponse<?> register(@RequestBody AccountRegister register) {
-		AccountRegisterCommand command = new AccountRegisterCommand();
-		return ApiResponse.status(service.register(command));
+		return ApiResponse.status(service.register(accountVoAssembler.toCommand(register)));
 	}
 
 	/**

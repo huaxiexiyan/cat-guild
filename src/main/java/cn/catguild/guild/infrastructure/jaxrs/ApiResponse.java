@@ -53,11 +53,11 @@ public class ApiResponse<T> {
 	}
 
 	public ApiResponse(String errorCode) {
-		this(false,null,errorCode,null,null,null,null);
+		this(false, null, errorCode, null, null, null, null);
 	}
 
 	public ApiResponse(T data) {
-		this(true,data,null,null,null,null,null);
+		this(true, data, null, null, null, null, null);
 	}
 
 	/**
@@ -72,7 +72,9 @@ public class ApiResponse<T> {
 	}
 
 	public static <T> ApiResponse<T> ok() {
-		return new ApiResponse<>();
+		ApiResponse<T> objectApiResponse = new ApiResponse<T>();
+		objectApiResponse.setSuccess(true);
+		return objectApiResponse;
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class ApiResponse<T> {
 	}
 
 	public static ApiResponse<?> status(Boolean status) {
-		return status == null || !status ? fail():ok();
+		return status != null && status ? ok() : fail();
 	}
 
 }
