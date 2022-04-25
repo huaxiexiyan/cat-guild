@@ -8,7 +8,6 @@ import cn.catguild.guild.applicaiton.user.query.AccountQuery;
 import cn.catguild.guild.domain.user.entity.Account;
 import cn.catguild.guild.domain.user.query.AccountDoQuery;
 import cn.catguild.guild.domain.user.repository.AccountRepository;
-import cn.catguild.guild.domain.user.type.AccountPassword;
 import cn.catguild.guild.domain.user.type.AccountUsername;
 import cn.catguild.guild.infrastructure.persistence.CatPage;
 import lombok.AllArgsConstructor;
