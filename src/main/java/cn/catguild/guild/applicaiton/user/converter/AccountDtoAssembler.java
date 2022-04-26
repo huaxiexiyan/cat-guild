@@ -13,7 +13,7 @@ import java.util.Collection;
  * @author Lionel
  * @date 2022-04-16 10:27
  */
-@Mapper(componentModel = MappingConstants.ComponentModel.JSR330,unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountDtoAssembler {
 
 	AccountDoQuery toDoQuery(AccountPageQuery pageQuery);

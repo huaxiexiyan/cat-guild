@@ -40,20 +40,36 @@ dependencies {
 
     // 持久层依赖
     compileOnly 'com.baomidou:mybatis-plus-boot-starter:3.5.1'
-    implementation 'com.alibaba:druid-spring-boot-starter:1.2.8'
+    implementation 'com.alibaba:druid-spring-boot-starter:1.2.9'
     implementation 'mysql:mysql-connector-java'
 
     // 工具类
     implementation 'com.google.guava:guava:31.1-jre'
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
     compileOnly 'org.mapstruct:mapstruct:1.5.0.RC1'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.0.RC1'
     testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.5.0.RC1'
 
     // 测试框架
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // mandatory dependencies for using Spock
+    testImplementation 'org.codehaus.groovy:groovy:3.0.10'
+    testImplementation platform("org.spockframework:spock-bom:2.0-groovy-3.0")
+    testImplementation "org.spockframework:spock-core"
+    // allows mocking of classes (in addition to interfaces)
+    testRuntimeOnly 'net.bytebuddy:byte-buddy:1.12.9'
+    testRuntimeOnly "org.objenesis:objenesis:3.2"
+    // test dao dependencies
+    testImplementation 'com.h2database:h2:2.1.212'
+    testImplementation 'org.codehaus.groovy:groovy-sql:3.0.10'
+    testImplementation 'org.codehaus.groovy:groovy-xml:3.0.10'
+    testImplementation 'org.dbunit:dbunit:2.7.3'
+    // if you are using mapstruct in test code
+    testCompileOnly 'org.mapstruct:mapstruct:1.5.0.RC1'
+    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.5.0.RC1'
+    // 断言库
+    testImplementation 'org.assertj:assertj-core:3.22.0'
 }
 
 compileJava {

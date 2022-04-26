@@ -4,8 +4,6 @@ import cn.catguild.guild.domain.user.entity.Adventurer;
 import cn.catguild.guild.domain.user.repository.AdventurerRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Named;
-
 /**
  * @author Lionel
  * @date 2022-04-04 21:42

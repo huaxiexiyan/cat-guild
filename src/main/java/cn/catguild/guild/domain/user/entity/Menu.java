@@ -15,6 +15,7 @@ import lombok.Getter;
 @Getter
 public class Menu implements Entity {
 	private MenuId id;
+	private MenuId parentId;
 	private MenuName name;
 	/** 按钮或菜单 **/
 	private MenuType type;

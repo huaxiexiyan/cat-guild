@@ -2,6 +2,7 @@ package cn.catguild.guild.domain.user.entity;
 
 import cn.catguild.guild.domain.user.type.*;
 import cn.catguild.guild.infrastructure.model.Entity;
+import cn.catguild.guild.infrastructure.type.CatTime;
 import lombok.*;
 
 /**

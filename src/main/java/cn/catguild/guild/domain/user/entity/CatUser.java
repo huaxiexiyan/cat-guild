@@ -2,6 +2,7 @@ package cn.catguild.guild.domain.user.entity;
 
 import cn.catguild.guild.domain.guild.type.GuildId;
 import cn.catguild.guild.domain.user.type.*;
+import cn.catguild.guild.infrastructure.type.CatTime;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

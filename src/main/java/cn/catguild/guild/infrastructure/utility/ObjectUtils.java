@@ -16,4 +16,7 @@ public class ObjectUtils extends org.springframework.util.ObjectUtils {
 		return !isEmpty(obj);
 	}
 
+	public static boolean notEquals(@Nullable Object o1, @Nullable Object o2) {
+		return !nullSafeEquals(o1,o2);
+	}
 }

@@ -1,4 +1,4 @@
-package cn.catguild.guild.domain.user.type;
+package cn.catguild.guild.infrastructure.type;
 
 import cn.catguild.guild.infrastructure.model.ValueObject;
 import lombok.AllArgsConstructor;

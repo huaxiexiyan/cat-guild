@@ -14,7 +14,7 @@ import java.util.Collection;
  * @author xiyan
  * @date 2022-04-23 12:43
  */
-@Mapper(componentModel = MappingConstants.ComponentModel.JSR330,unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountVoAssembler {
 
 	@Mapping(target = "createdTime",expression = "java(cn.catguild.guild.infrastructure.utility.CatDateUtils.toLocalDateTime(dto.getCreatedTime()))")

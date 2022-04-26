@@ -3,7 +3,6 @@ package cn.catguild.guild.domain.user.service;
 import cn.catguild.guild.domain.user.entity.FunctionPoint;
 import cn.catguild.guild.domain.user.type.AuthorityPoint;
 import cn.catguild.guild.domain.user.type.PermissionGroupBit;
-import cn.catguild.guild.infrastructure.utility.JsonUtils;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;

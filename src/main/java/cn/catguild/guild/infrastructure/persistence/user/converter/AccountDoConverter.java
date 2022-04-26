@@ -10,7 +10,7 @@ import java.util.Collection;
  * @author xiyan
  * @date 2022-04-04 23:57
  */
-@Mapper(componentModel = MappingConstants.ComponentModel.JSR330,unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountDoConverter{
 
 	@Mappings({

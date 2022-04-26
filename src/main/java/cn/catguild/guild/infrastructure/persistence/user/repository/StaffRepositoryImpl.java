@@ -2,14 +2,13 @@ package cn.catguild.guild.infrastructure.persistence.user.repository;
 
 import cn.catguild.guild.domain.user.entity.Staff;
 import cn.catguild.guild.domain.user.repository.StaffRepository;
-
-import javax.inject.Named;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Lionel
  * @date 2022-04-04 21:42
  */
-@Named
+@Repository
 public class StaffRepositoryImpl implements StaffRepository {
 
 	@Override
