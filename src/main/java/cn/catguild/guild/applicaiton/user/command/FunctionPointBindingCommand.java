@@ -3,7 +3,7 @@ package cn.catguild.guild.applicaiton.user.command;
 import lombok.Data;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-25 14:01
  */
 @Data

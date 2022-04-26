@@ -6,7 +6,7 @@ import cn.catguild.guild.domain.user.type.FunctionPointHrefKey;
 import java.util.Collection;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-25 14:08
  */
 public interface FunctionPointRepository {

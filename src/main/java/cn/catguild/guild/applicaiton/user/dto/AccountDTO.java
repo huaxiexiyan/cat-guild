@@ -4,7 +4,7 @@ import lombok.Data;
 import org.mapstruct.Mapping;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-16 10:27
  */
 @Data

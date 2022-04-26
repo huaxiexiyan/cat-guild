@@ -9,7 +9,7 @@ import cn.catguild.guild.domain.user.type.FunctionPointHrefKey;
 import java.util.List;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-25 14:07
  */
 public interface AuthDtoAssembler {

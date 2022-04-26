@@ -10,7 +10,7 @@ import org.mapstruct.*;
 import java.util.Collection;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-16 10:27
  */
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,unmappedTargetPolicy = ReportingPolicy.IGNORE)

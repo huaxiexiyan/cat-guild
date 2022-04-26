@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-25 17:44
  */
 public interface CatTreeNode<T,R> {

@@ -5,7 +5,7 @@ import cn.catguild.guild.domain.user.repository.AdventurerRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Lionel
+ * @author xiyan
  * @date 2022-04-04 21:42
  */
 @Repository
