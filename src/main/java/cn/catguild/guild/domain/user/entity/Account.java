@@ -11,7 +11,6 @@ import lombok.*;
  * @author xiyan
  * @date 2022-04-04 13:24
  */
-@Setter
 @Getter
 @AllArgsConstructor
 public class Account implements Entity{

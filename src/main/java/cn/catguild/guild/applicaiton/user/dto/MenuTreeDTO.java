@@ -16,6 +16,10 @@ public class MenuTreeDTO implements CatTreeNode<MenuTreeDTO,Long> {
 
 	private Long parentId;
 
+	private String name;
+
+	private Integer type;
+
 	private Collection<MenuTreeDTO> children;
 
 }

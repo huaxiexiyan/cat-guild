@@ -4,6 +4,7 @@ import cn.catguild.guild.domain.user.type.MenuId;
 import cn.catguild.guild.domain.user.type.MenuName;
 import cn.catguild.guild.domain.user.type.MenuType;
 import cn.catguild.guild.infrastructure.model.Entity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -13,6 +14,7 @@ import lombok.Getter;
  * @date 2022-04-24 16:43
  */
 @Getter
+@AllArgsConstructor
 public class Menu implements Entity {
 	private MenuId id;
 	private MenuId parentId;

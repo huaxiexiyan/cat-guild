@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.catguild.guild.infrastructure.persistence.user.mapper.MenuMapper">
+    <resultMap id="baseResult" type="cn.catguild.guild.infrastructure.persistence.user.entity.MenuDO">
+        <id column="id" property="id"/>
+        <result column="parentId" property="parentId"/>
+        <result column="type" property="type"/>
+        <result column="name" property="name"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="last_modified_time" property="lastModifiedTime"/>
+    </resultMap>
+</mapper>

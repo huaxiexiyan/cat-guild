@@ -60,7 +60,7 @@ public class MenuApplicationService {
 	 * @param command 编辑命令
 	 * @return 是否编辑成功
 	 */
-	public Boolean createMenu(MenuEditCommand command){
+	public Boolean editMenu(MenuEditCommand command){
 		Menu menu = menuDtoAssembler.toDomain(command);
 		return menuRepository.save(menu);
 	}
@@ -72,7 +72,7 @@ public class MenuApplicationService {
 	 * @return 是否移除成功
 	 */
 	public Boolean removeMenu(MenuRemoveCommand command){
-		List<MenuId> menuIds = menuDtoAssembler.toDp(command);
+		List<MenuId> menuIds = menuDtoAssembler.toDp(command.getIds());
 		return menuRepository.delete(menuIds);
 	}
 

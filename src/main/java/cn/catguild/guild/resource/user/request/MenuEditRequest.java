@@ -1,13 +1,13 @@
-package cn.catguild.guild.applicaiton.user.command;
+package cn.catguild.guild.resource.user.request;
 
 import lombok.Data;
 
 /**
  * @author xiyan
- * @date 2022-04-25 15:42
+ * @date 2022-04-26 20:24
  */
 @Data
-public class MenuEditCommand {
+public class MenuEditRequest {
 	/** 主键id **/
 	private Long id;
 	/** 上级菜单id **/
